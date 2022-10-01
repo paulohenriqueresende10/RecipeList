@@ -1,11 +1,11 @@
 export default function ImproveSkills(){
     const list = [
-        "Learn new recepies",
-        "Experiment with food",
-        "Write your own recepies",
-        "Know nutrition facts",
-        "Get cooking tips",
-        "Get ranked"
+        "Aprenda novas receitas",
+        "Experimente com comida",
+        "Escreva suas próprias receitas",
+        "Conheça os fatos nutricionais",
+        "Receba dicas de culinária",
+        "Qualifique-se"
     ]
 
     return (
@@ -14,11 +14,11 @@ export default function ImproveSkills(){
                 <img src="/img/gallery/img_10.jpg" alt="" />
             </div>
             <div className="col typography">
-                <h1 className="title">Improve Your Culinary Skills</h1>
+                <h1 className="title">Melhore Suas Habilidades Culinárias</h1>
                 { list.map((item, index) => (
                     <p className="skill-item" key={index}>{item}</p>
                 )) }
-                <button className="btn">singup now</button>
+                <button className="btn">Inscreva-se agora</button>
             </div>
         </div>
     )

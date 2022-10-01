@@ -5,7 +5,7 @@ export default function Footer(){
     return (
         <div className="footer container">
             <div className="footer-section">
-                <p className="title">Receitasdavovo.com</p>
+                <p className="title">receitasdavovo.com.br</p>
                 <p>Receitas da Vovó é um lugar onde você pode agradar a alma e o estômago com deliciosas receitas de comida de todas as culinárias. E nosso serviço é totalmente gratuito.</p>
                 <p>&copy; 2022 | Todos os direitos reservados</p>
             </div>
