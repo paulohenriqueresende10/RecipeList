@@ -7,9 +7,8 @@ type setPropertyProps = {
     key: string;
     
 }
-
 export default function Settings(){
-    const [settings, setSettings] = useState({
+    const [settings, setSettings] = useState<any>({
         "--background-color": "#fff",
         "--background-light": "#fff",
         "--primary-color": "rgb(255, 0, 86)",
@@ -26,7 +25,7 @@ export default function Settings(){
         }
     }, [settings])
 
-    const [theme, setTheme] = useState("light")
+    const [theme, setTheme] = useState<any>("light")
     const themes = [
         {
             "--background-color": "#fff",
@@ -45,7 +44,7 @@ export default function Settings(){
     ]
 
     function changeTheme(i: number){
-        const _theme = {...themes[i]}
+        const _theme:any = {...themes[i]}
         setTheme(i === 0 ? "light" : "dark")
         let _settings = {...settings}
         for(let key in _theme){
