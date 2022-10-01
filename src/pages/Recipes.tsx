@@ -2,6 +2,17 @@ import PreviousSearches from "../components/PreviousSearches"
 import RecipeCard from "../components/RecipeCard"
 
 export default function Recipes(){
+    const ConsultaApi = async () => {
+        const response = await fetch("https://phpdanki.000webhostapp.com");
+        return await response.json();
+    }
+    const recipesApi = async () => {
+    const recipes = await ConsultaApi();
+    console.log(recipes);
+    
+    }
+    recipesApi();
+
     const recipes = [
         {
             title: "Chicken Pan Pizza",
