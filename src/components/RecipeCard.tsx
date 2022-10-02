@@ -2,21 +2,24 @@ import CustomImage from "./CustomImage"
 
 type RecipeCardProps = {
     recipe: {
-        title: string,
-        image: string,
-        authorImg: string,
+        Author: string,
+        Description: string,
+        Ingredients: string[],
+        Method: string[],
+        Name: string,
+        url: string,
     };
 };
 
 export default function RecipeCard({recipe}: RecipeCardProps){
     return (
         <div className="recipe-card">
-            <CustomImage imgSrc={recipe.image} pt="65%"/>
+            <CustomImage imgSrc={`/img/gallery/recipe-card.jpg`} pt="65%"/>
             <div className="recipe-card-info">
-                <img className="auther-img" src={recipe.authorImg} alt=""/>
-                <p className="recipe-title">{recipe.title}</p>
-                <p className="recipe-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                <a className="view-btn" href="#!">VER RECEITA</a>
+                <img className="auther-img" src={`/img/top-chiefs/img_1.jpg`} alt=""/>
+                <p className="recipe-title">{recipe.Name}</p>
+                <p className="recipe-desc">{recipe.Description}</p>
+                <a className="view-btn" href={recipe.url}>VER RECEITA</a>
             </div>
         </div>
     )

@@ -1,86 +1,32 @@
-import PreviousSearches from "../components/PreviousSearches"
-import RecipeCard from "../components/RecipeCard"
+import { useState } from "react";
+import PreviousSearches from "../components/PreviousSearches";
+import RecipeCard from "../components/RecipeCard";
+
+type Recipes = {
+    Author: string;
+    Description: string;
+    Ingredients: string[];
+    Method: string[];
+    Name: string;
+    url: string;
+}[];
 
 export default function Recipes(){
+    const[recipes, SetRecipes] = useState<Recipes>();
     const ConsultaApi = async () => {
         const response = await fetch("https://phpdanki.000webhostapp.com");
         return await response.json();
     }
     const recipesApi = async () => {
-    const recipes = await ConsultaApi();
-    console.log(recipes);
-    
+        SetRecipes(await ConsultaApi());
     }
     recipesApi();
-
-    const recipes = [
-        {
-            title: "Chicken Pan Pizza",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-        }, 
-        {
-            title: "Spaghetti and Meatballs",
-            image: "/img/gallery/img_4.jpg",
-            authorImg: "/img/top-chiefs/img_2.jpg",
-        },
-        {
-            title: "American Cheese Burger",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-        },
-        {
-            title: "Mutton Biriyani",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-        },
-        {
-            title: "Japanese Sushi",
-            image: "/img/gallery/img_10.jpg",
-            authorImg: "/img/top-chiefs/img_6.jpg",
-        },
-        {
-            title: "Chicken Pan Pizza",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-        }, 
-        {
-            title: "Spaghetti and Meatballs",
-            image: "/img/gallery/img_4.jpg",
-            authorImg: "/img/top-chiefs/img_2.jpg",
-        },
-        {
-            title: "American Cheese Burger",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-        },
-        {
-            title: "Mutton Biriyani",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-        },
-        {
-            title: "Japanese Sushi",
-            image: "/img/gallery/img_10.jpg",
-            authorImg: "/img/top-chiefs/img_6.jpg",
-        },
-        {
-            title: "American Cheese Burger",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-        },
-        {
-            title: "Mutton Biriyani",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-        }
-    ].sort(() => Math.random() - 0.5)
 
     return (
         <div>
             <PreviousSearches />
             <div className="recipes-container">
-                {recipes.map((recipe, index) => (
+                {recipes?.map((recipe, index) => (
                     <RecipeCard key={index} recipe={recipe} />
                 ))}
             </div>
