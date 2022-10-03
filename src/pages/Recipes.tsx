@@ -9,13 +9,18 @@ type Recipes = {
     Method: string[];
     Name: string;
     url: string;
+    urlImage : string;
 }[];
 
 export default function Recipes(){
     const[recipes, SetRecipes] = useState<Recipes>();
     const ConsultaApi = async () => {
-        const response = await fetch("https://phpdanki.000webhostapp.com");
-        return await response.json();
+        try {
+            const response = await fetch("https://receitas-server.vercel.app/api");
+            return await response.json();
+        } catch(Error) {
+            alert(Error);
+        }
     }
     const recipesApi = async () => {
         SetRecipes(await ConsultaApi());
