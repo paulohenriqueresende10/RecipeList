@@ -15,16 +15,16 @@ type Recipes = {
 export default function Recipes(){
     const[recipes, SetRecipes] = useState<Recipes>();
     const ConsultaApi = async () => {
-        try {
-            const response = await fetch("https://receitas-server.vercel.app/api");
-            return await response.json();
-        } catch(Error) {
-            alert(Error);
-        }
+        const response = await fetch("https://receitas-server.vercel.app/api");
+        return await response.json();
+
     }
-    const recipesApi = async () => {
-        SetRecipes(await ConsultaApi());
+
+    const recipesApi = async (inicio = 0, fim = 15) => {
+        const data = await ConsultaApi();
+        SetRecipes(data.slice(inicio, fim));
     }
+
     recipesApi();
 
     return (
