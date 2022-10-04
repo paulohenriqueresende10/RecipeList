@@ -14,18 +14,25 @@ type Recipes = {
 
 export default function Recipes(){
     const[recipes, SetRecipes] = useState<Recipes>();
-    const ConsultaApi = async () => {
+    const[numberRecipes, setNumberRecipes] = useState(9)
+    const ConsultaApi = async ():Promise<Recipes> => {
         const response = await fetch("https://receitas-server.vercel.app/api");
-        return await response.json();
-
+        const data = await response.json();
+        return data;
     }
 
-    const recipesApi = async (inicio = 0, fim = 15) => {
-        const data = await ConsultaApi();
-        SetRecipes(data.slice(inicio, fim));
-    }
-
-    recipesApi();
+    const renderRecipes = async (final: number) => {
+        const renderData = await ConsultaApi();
+        SetRecipes(renderData.slice(0,final));
+        
+    } 
+    renderRecipes(numberRecipes);
+    
+    window.onscroll = function() {
+        if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {      
+            setNumberRecipes(numberRecipes + 9);
+        }
+      }
 
     return (
         <div>
