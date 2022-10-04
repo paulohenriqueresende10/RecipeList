@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PreviousSearches from "../components/PreviousSearches";
 import RecipeCard from "../components/RecipeCard";
 
@@ -28,11 +28,16 @@ export default function Recipes(){
     } 
     renderRecipes(numberRecipes);
     
-    window.onscroll = function() {
-        if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {      
-            setNumberRecipes(numberRecipes + 9);
-        }
-      }
+    useEffect(()=> {
+        window.onscroll = function() {
+            if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {      
+                setNumberRecipes(numberRecipes + 9);
+            }
+          }
+        return () => {
+           
+        };
+    });
 
     return (
         <div>
