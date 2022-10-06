@@ -13,8 +13,9 @@ type Recipes = {
 }[];
 
 export default function Recipes(){
-    const[recipes, SetRecipes] = useState<Recipes>();
+    const[recipes, setRecipes] = useState<Recipes>();
     const[numberRecipes, setNumberRecipes] = useState(9);
+    const[inputSearch, setInputSearch] = useState("");
 
     const ConsultaApi = async ():Promise<Recipes> => {
         const response = await fetch("https://receitas-server.vercel.app/api");
@@ -24,14 +25,19 @@ export default function Recipes(){
 
     const renderRecipes = async (final: number) => {
         const renderData = await ConsultaApi();
-        SetRecipes(renderData.slice(0,final));     
+        setRecipes(renderData.slice(0,final));     
     }
 
-    const handleChangeButton = (event: React.ChangeEvent<HTMLInputElement>) => { 
-        const searchInputValue = event.target.value;
-        console.log(searchInputValue);
-         
-        return searchInputValue;
+    const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => { 
+        const searchInputValue = event.target.value; 
+        setInputSearch(searchInputValue);
+    };
+
+    const handleClickButton = () => { 
+        if(inputSearch === '') return renderRecipes(9);
+        const filterTypeValue = "Name";
+        const newRecipes = recipes?.filter((recipe) => recipe[filterTypeValue].toLowerCase().includes(inputSearch.toLowerCase()));
+        setRecipes(newRecipes);     
     };
 
     const handleonScroll = () => { 
@@ -51,7 +57,8 @@ export default function Recipes(){
     return (
         <div>
             <PreviousSearches
-                onChange={handleChangeButton} 
+                onChange={handleChangeInput} 
+                onClick={handleClickButton}
             />
             <div className="recipes-container">
                 {recipes?.map((recipe, index) => (
