@@ -14,7 +14,8 @@ type Recipes = {
 
 export default function Recipes(){
     const[recipes, SetRecipes] = useState<Recipes>();
-    const[numberRecipes, setNumberRecipes] = useState(9)
+    const[numberRecipes, setNumberRecipes] = useState(9);
+
     const ConsultaApi = async ():Promise<Recipes> => {
         const response = await fetch("https://receitas-server.vercel.app/api");
         const data = await response.json();
@@ -23,25 +24,35 @@ export default function Recipes(){
 
     const renderRecipes = async (final: number) => {
         const renderData = await ConsultaApi();
-        SetRecipes(renderData.slice(0,final));
-        
-    } 
-    renderRecipes(numberRecipes);
-    
-    useEffect(()=> {
+        SetRecipes(renderData.slice(0,final));     
+    }
+
+    const handleChangeButton = (event: React.ChangeEvent<HTMLInputElement>) => { 
+        const searchInputValue = event.target.value;
+        console.log(searchInputValue);
+         
+        return searchInputValue;
+    };
+
+    const handleonScroll = () => { 
         window.onscroll = function() {
             if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {      
                 setNumberRecipes(numberRecipes + 9);
             }
-          }
-        return () => {
-           
-        };
-    });
+        }      
+    };
+
+    handleonScroll()
+
+    useEffect(()=> {
+        renderRecipes(numberRecipes);
+    },[numberRecipes]);
 
     return (
         <div>
-            <PreviousSearches />
+            <PreviousSearches
+                onChange={handleChangeButton} 
+            />
             <div className="recipes-container">
                 {recipes?.map((recipe, index) => (
                     <RecipeCard key={index} recipe={recipe} />

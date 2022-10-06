@@ -1,7 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
-export default function PreviousSearches(){
+export interface InputPropsInterface
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+
+export default function PreviousSearches({
+  children,
+  ...rest
+}: InputPropsInterface){
     const searches = ['pizza', 'hambúrguer', 'cookies', 'sucos', 'açaí', 'salada', 'sorvete', 'lasanha', 'pudim', 'sopa'] 
 
     return (
@@ -13,7 +20,7 @@ export default function PreviousSearches(){
                 </div>)) }
             </div>
             <div className="search-box">
-                <input type="text" placeholder="Procurar ..." />
+                <input type="text" {...rest} placeholder="Procurar ..." />
                 <button className="btn">
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
