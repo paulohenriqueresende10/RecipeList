@@ -1,22 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
+import { faMinus, faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react";
 
 type PreviousSearchesProps = {
     onClick: (search: string) => void;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    inputvalue: string;
 };
 
-export default function PreviousSearches({onChange, onClick}: PreviousSearchesProps){   
-    const searches = ["Author","Description","Ingredients","Method", "Name"];
-    const[search, setSearch] = useState("Name");
+export default function PreviousSearches({onChange, onClick, inputvalue}: PreviousSearchesProps){   
+    const searches = ["Author","Description","Ingredients", "Name"];
+    const [search, setSearch] = useState("Name");
+    const [plusState, setplusState] = useState(false);
 
     const handleClickValue = (typeSearch: string) => {  
         setSearch(typeSearch);    
     };
     const handleClickAddInputSearch = () => {  
-        console.log("aqui");
-           
+        setplusState(current => !current);  
     };
 
     return (
@@ -28,14 +29,19 @@ export default function PreviousSearches({onChange, onClick}: PreviousSearchesPr
                 </div>)) }
             </div>
             <div className="search-box">
-                 <button onClick={handleClickAddInputSearch} className="btn btn-plus">
-                    <FontAwesomeIcon icon={faPlus} />
+                <button onClick={handleClickAddInputSearch} className="btn btn-plus">
+                    <FontAwesomeIcon icon={!plusState ? faPlus : faMinus} />
                 </button>
                 <p className="type-search">{search}</p>
                 <input type="text" onChange={onChange} placeholder="Procurar ..." />
                 <button onClick={()=> {onClick(search)}} className="btn">
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
+            </div>
+            <div className="search-box">
+                {plusState && (
+                    <span>{inputvalue}</span>
+                )}
             </div>
         </div>
     )

@@ -48,7 +48,6 @@ export default function Recipes(){
             const recipesFilterByIngredients = recipes?.filter((recipe) => recipe.Ingredients.includes(inputSearch.toLowerCase()));
             setRecipes(recipesFilterByIngredients);
         } else {
-
             const newRecipes = recipes?.filter((recipe) => recipe[filterTypeValue].toLowerCase().includes(inputSearch.toLowerCase()));
             setRecipes(newRecipes);
         }
@@ -75,6 +74,7 @@ export default function Recipes(){
             <PreviousSearches
                 onChange={handleChangeInput} 
                 onClick={handleClickButton}
+                inputvalue={inputSearch}
             />
             <div className="recipes-container">
                 {recipes?.map((recipe, index) => (
