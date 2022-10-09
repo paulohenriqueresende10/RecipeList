@@ -38,9 +38,13 @@
             padding-inline: .75em;
             border-radius: 0 5px 5px 0;
         }
+        .btn-plus {
+            padding-block: 0;
+            padding-inline: .75em;
+            border-radius: 5px 0 0 5px;
+        }
     }
     .type-search{
-        border-left: .2em solid var(--primary-color);
         margin-right: .5em;
         padding: .1em 0 .1em .5em;
         color: var(--text-light);

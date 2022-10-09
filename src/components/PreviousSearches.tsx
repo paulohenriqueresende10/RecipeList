@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react";
 
 type PreviousSearchesProps = {
@@ -14,6 +14,10 @@ export default function PreviousSearches({onChange, onClick}: PreviousSearchesPr
     const handleClickValue = (typeSearch: string) => {  
         setSearch(typeSearch);    
     };
+    const handleClickAddInputSearch = () => {  
+        console.log("aqui");
+           
+    };
 
     return (
         <div className="previous-searches section">
@@ -24,6 +28,9 @@ export default function PreviousSearches({onChange, onClick}: PreviousSearchesPr
                 </div>)) }
             </div>
             <div className="search-box">
+                 <button onClick={handleClickAddInputSearch} className="btn btn-plus">
+                    <FontAwesomeIcon icon={faPlus} />
+                </button>
                 <p className="type-search">{search}</p>
                 <input type="text" onChange={onChange} placeholder="Procurar ..." />
                 <button onClick={()=> {onClick(search)}} className="btn">
