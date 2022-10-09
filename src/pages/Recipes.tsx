@@ -16,6 +16,7 @@ export default function Recipes(){
     const[recipes, setRecipes] = useState<Recipes>();
     const[numberRecipes, setNumberRecipes] = useState(9);
     const[inputSearch, setInputSearch] = useState("");
+    const[scroll,setScroll] = useState(true);
 
     const ConsultaApi = async ():Promise<Recipes> => {
         const response = await fetch("https://receitas-server.vercel.app/api");
@@ -33,11 +34,17 @@ export default function Recipes(){
         setInputSearch(searchInputValue);
     };
 
-    const handleClickButton = () => { 
+    const handleClickButton = (searchType: string) => {
         if(inputSearch === '') return renderRecipes(9);
-        const filterTypeValue = "Name";
+
+        let filterTypeValue: "Author" | "Description" | "Name";
+        if(searchType === "Author") filterTypeValue = "Author";
+        if(searchType === "Name") filterTypeValue = "Name";
+        if(searchType === "Description") filterTypeValue = "Description";
+
         const newRecipes = recipes?.filter((recipe) => recipe[filterTypeValue].toLowerCase().includes(inputSearch.toLowerCase()));
-        setRecipes(newRecipes);     
+        setRecipes(newRecipes);
+        setScroll(false);     
     };
 
     const handleonScroll = () => { 
@@ -50,8 +57,8 @@ export default function Recipes(){
 
     handleonScroll()
 
-    useEffect(()=> {
-        renderRecipes(numberRecipes);
+    useEffect(()=> {   
+        if(scroll) renderRecipes(numberRecipes);   
     },[numberRecipes]);
 
     return (
