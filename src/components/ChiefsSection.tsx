@@ -21,13 +21,13 @@ export default function ChiefsSection(){
             cuisine: "Italiana",
         },
         {
-            name: "Johnson",
+            name: "Ellon Musk",
             img: "/img/top-chiefs/img_4.jpg",
             recipesCount: "08",
             cuisine: "Americana"
         },
         {
-            name: "Zidane",
+            name: "Érick Jacquin",
             img: "/img/top-chiefs/img_5.jpg",
             recipesCount: "09",
             cuisine: "Francesa"

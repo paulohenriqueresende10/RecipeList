@@ -44,9 +44,15 @@ export default function Recipes(){
         if(searchType === "Author") filterTypeValue = "Author";
         if(searchType === "Name") filterTypeValue = "Name";
         if(searchType === "Description") filterTypeValue = "Description";
+        if(searchType === "Ingredients") {
+            const recipesFilterByIngredients = recipes?.filter((recipe) => recipe.Ingredients.includes(inputSearch.toLowerCase()));
+            setRecipes(recipesFilterByIngredients);
+        } else {
 
-        const newRecipes = recipes?.filter((recipe) => recipe[filterTypeValue].toLowerCase().includes(inputSearch.toLowerCase()));
-        setRecipes(newRecipes);
+            const newRecipes = recipes?.filter((recipe) => recipe[filterTypeValue].toLowerCase().includes(inputSearch.toLowerCase()));
+            setRecipes(newRecipes);
+        }
+
         setScroll(false);     
     };
 
@@ -60,9 +66,7 @@ export default function Recipes(){
 
     handleonScroll()
 
-    useEffect(()=> {
-        console.log(scroll);
-           
+    useEffect(()=> {          
         if(scroll) renderRecipes(numberRecipes);   
     },[numberRecipes]);
 
