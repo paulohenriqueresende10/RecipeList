@@ -35,7 +35,10 @@ export default function Recipes(){
     };
 
     const handleClickButton = (searchType: string) => {
-        if(inputSearch === '') return renderRecipes(9);
+        if(inputSearch === '') {
+            setScroll(true);
+            return renderRecipes(9);
+        }
 
         let filterTypeValue: "Author" | "Description" | "Name";
         if(searchType === "Author") filterTypeValue = "Author";
@@ -51,14 +54,15 @@ export default function Recipes(){
         window.onscroll = function() {
             if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {      
                 setNumberRecipes(numberRecipes + 9);
-                setScroll(true);
             }
         }      
     };
 
     handleonScroll()
 
-    useEffect(()=> {   
+    useEffect(()=> {
+        console.log(scroll);
+           
         if(scroll) renderRecipes(numberRecipes);   
     },[numberRecipes]);
 
