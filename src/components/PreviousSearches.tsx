@@ -24,7 +24,7 @@ export default function PreviousSearches({onChange, onClick}: PreviousSearchesPr
                 </div>)) }
             </div>
             <div className="search-box">
-                <p className="skill-item">{search}</p>
+                <p className="type-search">{search}</p>
                 <input type="text" onChange={onChange} placeholder="Procurar ..." />
                 <button onClick={()=> {onClick(search)}} className="btn">
                     <FontAwesomeIcon icon={faSearch} />

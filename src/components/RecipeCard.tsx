@@ -17,9 +17,14 @@ export default function RecipeCard({recipe}: RecipeCardProps){
         <div className="recipe-card">
             <CustomImage imgSrc={recipe.urlImage} pt="65%"/>
             <div className="recipe-card-info">
-                <img className="auther-img" src={`/img/top-chiefs/img_1.jpg`} alt=""/>
+                <img className="auther-img" src={`/img/top-chiefs/img_1.jpg`} alt={recipe.Author}/>
                 <p className="recipe-title">{recipe.Name}</p>
                 <p className="recipe-desc">{recipe.Description}</p>
+                <div className="recipe-ingredients">
+                    { recipe.Ingredients.map((ingredient, index) => (<p className="ingredient-list" key={index}>
+                        {ingredient}
+                    </p>)) }
+                </div>
                 <a className="view-btn" href={recipe.url}>VER RECEITA</a>
             </div>
         </div>

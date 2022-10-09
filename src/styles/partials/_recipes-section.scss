@@ -49,4 +49,28 @@
         margin-top: auto;
         display: inline-block;
     }
+    .recipe-ingredients{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: var(--text-light);
+        font-size: .9em;
+        letter-spacing: 1px;
+        margin-bottom: 1.8em;
+    }
+    .ingredient-list {
+        border-left: .2em solid var(--primary-color);
+        margin-right: .5em;
+        padding: .1em 0 .1em .5em;
+        color: var(--text-light);
+        font-weight: bold;
+        transform: translateX(100%);
+        opacity: 0;
+        animation: getAnimationDuration(.3s) slideInRight forwards;
+        @for $i from 2 through 20 {
+            &:nth-child(#{$i}){
+                animation-delay: #{$i * .1}s;
+            }
+        }
+    }
 }

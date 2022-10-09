@@ -51,6 +51,7 @@ export default function Recipes(){
         window.onscroll = function() {
             if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {      
                 setNumberRecipes(numberRecipes + 9);
+                setScroll(true);
             }
         }      
     };
