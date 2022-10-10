@@ -39,8 +39,10 @@ export default function PreviousSearches({onChange, onClick, inputvalue}: Previo
                 </button>
             </div>
             <div className="search-box">
-                {plusState && (
-                    <span>{inputvalue}</span>
+                {plusState && (  
+                    inputvalue.map((prevousSearch, index) => (<div  key={index} className="search-item">
+                        {prevousSearch}
+                    </div>))
                 )}
             </div>
         </div>
