@@ -16,6 +16,7 @@ export default function Recipes(){
     const[recipes, setRecipes] = useState<Recipes>();
     const[numberRecipes, setNumberRecipes] = useState(9);
     const[inputSearch, setInputSearch] = useState("");
+    const[comboInput, setComboInput] = useState<string[]>([]);
     const[scroll,setScroll] = useState(true);
 
     const ConsultaApi = async ():Promise<Recipes> => {
@@ -51,7 +52,7 @@ export default function Recipes(){
             const newRecipes = recipes?.filter((recipe) => recipe[filterTypeValue].toLowerCase().includes(inputSearch.toLowerCase()));
             setRecipes(newRecipes);
         }
-
+        setComboInput(prevNames => [...prevNames, inputSearch])
         setScroll(false);     
     };
 
@@ -74,7 +75,7 @@ export default function Recipes(){
             <PreviousSearches
                 onChange={handleChangeInput} 
                 onClick={handleClickButton}
-                inputvalue={inputSearch}
+                inputvalue={comboInput}
             />
             <div className="recipes-container">
                 {recipes?.map((recipe, index) => (

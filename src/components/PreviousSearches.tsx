@@ -5,7 +5,7 @@ import { useState } from "react";
 type PreviousSearchesProps = {
     onClick: (search: string) => void;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    inputvalue: string;
+    inputvalue: string[];
 };
 
 export default function PreviousSearches({onChange, onClick, inputvalue}: PreviousSearchesProps){   
